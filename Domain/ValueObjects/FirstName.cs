@@ -1,4 +1,5 @@
-﻿using Domain.Infrastructure;
+﻿using Domain.Errors;
+using Domain.Infrastructure;
 using Domain.Shared;
 
 namespace Domain.ValueObjects
