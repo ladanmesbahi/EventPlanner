@@ -1,5 +1,7 @@
 ﻿using Domain.Enums;
+using Domain.Errors;
 using Domain.Infrastructure;
+using Domain.Shared;
 
 namespace Domain.Entities
 {
@@ -21,5 +23,24 @@ namespace Domain.Entities
         public int NumberOfAttendees { get; set; }
         public IReadOnlyCollection<Attendee> Attendees => _attendees;
         public IReadOnlyCollection<Invitation> Invitations => _invitations;
+
+        public Result<Invitation> SendInvitation(Member member)
+        {
+            if (Creator.Id == member.Id)
+            {
+                return Result.Failure<Invitation>(DomainErrors.Conference.InvitingCreator);
+            }
+
+            if (ScheduleAtUtc < DateTime.UtcNow)
+            {
+                return Result.Failure<Invitation>(DomainErrors.Conference.AlreadyPassed);
+            }
+
+            var invitation = new Invitation(Guid.NewGuid(), member, this);
+
+            _invitations.Add(invitation);
+
+            return invitation;
+        }
     }
 }

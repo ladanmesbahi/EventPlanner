@@ -32,5 +32,20 @@ namespace Domain.Errors
                 "LastName.TooLong",
                 "Last name is too long");
         }
+
+        public static class Conference
+        {
+            public static readonly Error InvitingCreator = new(
+                "Conference.InvitingCreator",
+                "Can't send invitation to the Conference creator");
+
+            public static readonly Error AlreadyPassed = new(
+               "Conference.AlreadyPassed",
+               "Can't send invitation for Conference in the past");
+
+            public static readonly Error Expired = new(
+                "Conference.Expired",
+                "Can't accept invitation for expired Conference");
+        }
     }
 }
