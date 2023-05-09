@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities
+﻿namespace EventPlanner.Domain.Entities
 {
     public class Attendee
     {

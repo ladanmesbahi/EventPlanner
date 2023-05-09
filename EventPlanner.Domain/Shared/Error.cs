@@ -1,4 +1,4 @@
-﻿namespace Domain.Shared
+﻿namespace EventPlanner.Domain.Shared
 {
     public class Error : IEquatable<Error>
     {

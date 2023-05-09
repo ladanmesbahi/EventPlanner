@@ -1,8 +1,8 @@
-﻿using Domain.Errors;
-using Domain.Infrastructure;
-using Domain.Shared;
+﻿using EventPlanner.Domain.Errors;
+using EventPlanner.Domain.Infrastructure;
+using EventPlanner.Domain.Shared;
 
-namespace Domain.ValueObjects
+namespace EventPlanner.Domain.ValueObjects
 {
     public sealed class LastName : ValueObject
     {

@@ -1,9 +1,9 @@
-﻿using Domain.Infrastructure;
-using Domain.ValueObjects;
+﻿using EventPlanner.Domain.Infrastructure;
+using EventPlanner.Domain.ValueObjects;
 
-namespace Domain.Entities
+namespace EventPlanner.Domain.Entities
 {
-    public class Member : BaseEntity
+    public class Member : AggregateRoot, IAuditableEntity
     {
         public Member(Guid id, FirstName firstName, LastName lastName, Email email) : base(id)
         {
@@ -15,5 +15,7 @@ namespace Domain.Entities
         public FirstName FirstName { get; set; }
         public LastName LastName { get; set; }
         public Email Email { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime? ModifiedOnUtc { get; set; }
     }
 }

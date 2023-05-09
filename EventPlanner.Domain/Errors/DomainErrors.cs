@@ -1,6 +1,6 @@
-﻿using Domain.Shared;
+﻿using EventPlanner.Domain.Shared;
 
-namespace Domain.Errors
+namespace EventPlanner.Domain.Errors
 {
     public static class DomainErrors
     {

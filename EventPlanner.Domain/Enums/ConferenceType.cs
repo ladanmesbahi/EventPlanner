@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums
+﻿namespace EventPlanner.Domain.Enums
 {
     public enum ConferenceType
     {

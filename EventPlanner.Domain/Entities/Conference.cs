@@ -1,9 +1,9 @@
-﻿using Domain.Enums;
-using Domain.Errors;
-using Domain.Infrastructure;
-using Domain.Shared;
+﻿using EventPlanner.Domain.Enums;
+using EventPlanner.Domain.Errors;
+using EventPlanner.Domain.Infrastructure;
+using EventPlanner.Domain.Shared;
 
-namespace Domain.Entities
+namespace EventPlanner.Domain.Entities
 {
     public class Conference : AggregateRoot
     {

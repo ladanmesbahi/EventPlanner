@@ -1,4 +1,4 @@
-﻿namespace Domain.Infrastructure
+﻿namespace EventPlanner.Domain.Infrastructure
 {
     public abstract class AggregateRoot : BaseEntity
     {

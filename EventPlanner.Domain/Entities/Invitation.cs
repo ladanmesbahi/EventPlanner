@@ -1,7 +1,7 @@
-﻿using Domain.Enums;
-using Domain.Infrastructure;
+﻿using EventPlanner.Domain.Enums;
+using EventPlanner.Domain.Infrastructure;
 
-namespace Domain.Entities
+namespace EventPlanner.Domain.Entities
 {
     public class Invitation : BaseEntity
     {
