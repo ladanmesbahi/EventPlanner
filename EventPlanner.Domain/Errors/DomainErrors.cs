@@ -46,6 +46,10 @@ namespace EventPlanner.Domain.Errors
             public static readonly Error Expired = new(
                 "Conference.Expired",
                 "Can't accept invitation for expired Conference");
+
+            public static readonly Func<Guid, Error> NotFound = id => new Error(
+                "Conference.NotFound",
+                $"The Conference with the identifier {id} was not found.");
         }
     }
 }
