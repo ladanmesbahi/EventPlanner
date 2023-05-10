@@ -1,7 +1,5 @@
 ﻿using EventPlanner.Domain.Enums;
-using EventPlanner.Domain.Errors;
 using EventPlanner.Domain.Infrastructure;
-using EventPlanner.Domain.Shared;
 
 namespace EventPlanner.Domain.Entities
 {
@@ -9,7 +7,23 @@ namespace EventPlanner.Domain.Entities
     {
         private readonly List<Invitation> _invitations = new();
         private readonly List<Attendee> _attendees = new();
-        public Conference(Guid id) : base(id)
+        private Conference(
+            Guid id,
+            Member creator,
+            ConferenceType type,
+            DateTime scheduleAtUtc,
+            string name,
+            string? location)
+            : base(id)
+        {
+            Creator = creator;
+            Type = type;
+            ScheduleAtUtc = scheduleAtUtc;
+            Name = name;
+            Location = location;
+        }
+
+        private Conference()
         {
         }
 
@@ -24,23 +38,27 @@ namespace EventPlanner.Domain.Entities
         public IReadOnlyCollection<Attendee> Attendees => _attendees;
         public IReadOnlyCollection<Invitation> Invitations => _invitations;
 
-        public Result<Invitation> SendInvitation(Member member)
+        public static Conference Create(
+           Guid id,
+           Member creator,
+           ConferenceType type,
+           DateTime scheduledAtUtc,
+           string name,
+           string? location,
+           int? maximumNumberOfAttendees,
+           int? invitationsValidBeforeInHours)
         {
-            if (Creator.Id == member.Id)
-            {
-                return Result.Failure<Invitation>(DomainErrors.Conference.InvitingCreator);
-            }
+            var conference = new Conference(
+                id,
+                creator,
+                type,
+                scheduledAtUtc,
+                name,
+                location);
 
-            if (ScheduleAtUtc < DateTime.UtcNow)
-            {
-                return Result.Failure<Invitation>(DomainErrors.Conference.AlreadyPassed);
-            }
+            //conference.CalculateConferenceTypeDetails(maximumNumberOfAttendees, invitationsValidBeforeInHours);
 
-            var invitation = new Invitation(Guid.NewGuid(), member, this);
-
-            _invitations.Add(invitation);
-
-            return invitation;
+            return conference;
         }
     }
 }

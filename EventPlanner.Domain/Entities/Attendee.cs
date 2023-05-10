@@ -2,11 +2,15 @@
 {
     public class Attendee
     {
-        public Attendee(Invitation invitation)
+        internal Attendee(Invitation invitation) : this()
         {
             ConferenceId = invitation.ConferenceId;
             MemberId = invitation.MemberId;
             CreatedOnUtc = DateTime.UtcNow;
+        }
+
+        private Attendee()
+        {
         }
         public Guid ConferenceId { get; private set; }
         public Guid MemberId { get; private set; }

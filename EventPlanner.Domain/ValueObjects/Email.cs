@@ -6,10 +6,7 @@ namespace EventPlanner.Domain.ValueObjects
 {
     public sealed class Email : ValueObject
     {
-        public Email(string value)
-        {
-            Value = value;
-        }
+        private Email(string value) => Value = value;
         public string Value { get; }
 
         public static Result<Email> Create(string email)

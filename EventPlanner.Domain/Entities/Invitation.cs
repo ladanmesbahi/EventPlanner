@@ -3,20 +3,29 @@ using EventPlanner.Domain.Infrastructure;
 
 namespace EventPlanner.Domain.Entities
 {
-    public class Invitation : BaseEntity
+    public sealed class Invitation : BaseEntity
     {
-        public Invitation(Guid id, Member member, Conference conference) : base(id)
+        internal Invitation(Guid id, Member member, Conference conference)
+            : base(id)
         {
             MemberId = member.Id;
             ConferenceId = conference.Id;
+            Status = InvitationStatus.Pending;
             CreatedOnUtc = DateTime.UtcNow;
         }
 
-        public Guid ConferenceId { get; set; }
-        public Guid MemberId { get; set; }
-        public InvitationStatus Status { get; set; }
-        public DateTime CreatedOnUtc { get; set; }
-        public DateTime? ModifiedOnUtc { get; set; }
+        private Invitation()
+        {
+        }
 
+        public Guid ConferenceId { get; private set; }
+
+        public Guid MemberId { get; private set; }
+
+        public InvitationStatus Status { get; private set; }
+
+        public DateTime CreatedOnUtc { get; private set; }
+
+        public DateTime? ModifiedOnUtc { get; private set; }
     }
 }
